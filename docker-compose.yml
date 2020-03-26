@@ -7,14 +7,14 @@ services:
       dockerfile: ./docker/php.dockerfile
     volumes:
       - .:/var/www/app:rw,cached
-      - ./data:/var/www/app/data:rw,cached
+      #- ./data:/var/www/app/data:rw,cached
     ports:
       - '8200:8000'
-    depends_on:
-      - mariadb    
+   # depends_on:
+   #   - mariadb    
     command: "symfony serve"
 
-  mariadb:
-    image: 'bitnami/mariadb:10.3'
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
+  #mariadb:
+  #  image: 'bitnami/mariadb:10.3'
+  #  environment:
+  #    - ALLOW_EMPTY_PASSWORD=yes

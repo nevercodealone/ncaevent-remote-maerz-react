@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+ <li class="breadcrumb-item"><a href="/events">Events</a></li>
+ <li class="breadcrumb-item">Event #{{event.id}}</li>
+{% endblock nav %}
+
+{% block content %}
+    <h2>{{event.title}}</h2>
+{{ form(form) }}
+
+{% endblock %}

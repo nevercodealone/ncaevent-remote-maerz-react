@@ -52,6 +52,7 @@ ENV PATH="/home/appuser/.symfony/bin:$PATH"
 
 RUN chown -R $UID:$GID ${APP_PATH}; \
     chown -R $UID:$GID ${APP_PATH}/var; \
+    chown -R $UID:$GID ${APP_PATH}/data; \
     chown -R $UID:$GID /home/appuser; \
     chmod +x bin/console; sync
 

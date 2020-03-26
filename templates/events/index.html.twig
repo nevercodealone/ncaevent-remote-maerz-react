@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block nav %}
+ <li class="breadcrumb-item"><a href="/events">Events</a></li>
+{% endblock nav %}
+
+{% block content %}
+    <h2>Events!</h2>
+<ul>
+{% for event in events %}
+    <li><a href="{{ url("edit_event", {id: event.id}) }}">{{event.title}}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}
