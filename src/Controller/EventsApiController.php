@@ -67,7 +67,7 @@ class EventsApiController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $event = $this->getEventFromRequest($request);
-        if ((null !== $event->getId()) && ($event->getId() !== $id)) {
+        if ((null !== $event->getId()) && ($event->getId() != $id)) {
             throw new Exception("ID mismatch in URL and body");
         } else {
             $event->setId($id);
