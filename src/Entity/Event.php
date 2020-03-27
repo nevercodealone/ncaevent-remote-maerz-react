@@ -43,6 +43,12 @@ class Event
         return $this->id;
     }
 
+    public function setId($id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
+
     public function getTitle(): ?string
     {
         return $this->title;
