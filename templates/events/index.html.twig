@@ -11,4 +11,6 @@
     <li><a href="{{ url("edit_event", {id: event.id}) }}">{{event.title}}</a></li>
 {% endfor %}
 </ul>
+
+<a class="btn btn-primary" href="{{url("new_event")}}">Create a new Event</a>
 {% endblock %}

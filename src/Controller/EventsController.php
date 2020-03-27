@@ -5,12 +5,12 @@ namespace App\Controller;
 use App\Entity\Event;
 use App\Forms\EventFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class EventsController extends AbstractController
 {
-
     /**
      * @Route("/events")
      */
@@ -24,26 +24,11 @@ class EventsController extends AbstractController
         ]);
     }
     /**
-     * @Route("/events/new")
+     * @Route(name="new_event", path="/events/new")
      */
     public function newAction(Request $request)
     {
-        $event = new Event();
-        $form = $this->createForm(EventFormType::class, $event);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $event = $form->getData();
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($event);
-            $em->flush();
-            $this->redirectToRoute("edit_event", ["id" => $event->getId()]);
-        }
-
-        return $this->render('events/edit.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        return $this->defaultForm($request, new Event());
     }
 
     /**
@@ -53,17 +38,22 @@ class EventsController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $event = $em->getRepository(Event::class)->find($id);
-        $form = $this->createForm(EventFormType::class, $event);
 
+        return $this->defaultForm($request, $event);
+    }
+
+    private function defaultForm(Request $request, Event $event)
+    {
+        $form = $this->createForm(EventFormType::class, $event);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $event = $form->getData();
 
             $em = $this->getDoctrine()->getManager();
+            $em->persist($event);
             $em->flush();
-            $this->redirectToRoute("edit_event", ["id" => $event->getId()]);
+            return $this->redirectToRoute("edit_event", ["id" => $event->getId()]);
         }
-
         return $this->render('events/edit.html.twig', [
             'event' => $event,
             'form' => $form->createView(),

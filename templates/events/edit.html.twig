@@ -2,7 +2,7 @@
 
 {% block nav %}
  <li class="breadcrumb-item"><a href="/events">Events</a></li>
- <li class="breadcrumb-item">Event #{{event.id}}</li>
+ <li class="breadcrumb-item">{% if event.id %}Event #{{event.id}} {% else %} New Event{% endif %}</li>
 {% endblock nav %}
 
 {% block content %}
