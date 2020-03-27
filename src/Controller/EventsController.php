@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class EventsController extends AbstractController
 {
     /**
-     * @Route("/events")
+     * @Route("/bevents")
      */
     public function indexAction()
     {
@@ -24,7 +24,7 @@ class EventsController extends AbstractController
         ]);
     }
     /**
-     * @Route(name="new_event", path="/events/new")
+     * @Route(name="new_event", path="/bevents/new")
      */
     public function newAction(Request $request)
     {
@@ -32,7 +32,7 @@ class EventsController extends AbstractController
     }
 
     /**
-     * @Route(name="edit_event", path="/events/{id}")
+     * @Route(name="edit_event", path="/bevents/{id}")
      */
     public function editAction(string $id, Request $request)
     {
