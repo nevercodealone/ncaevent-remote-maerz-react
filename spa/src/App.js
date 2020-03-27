@@ -1,20 +1,16 @@
 import React from "react";
-import { Col, Row, ListGroup, Button } from "react-bootstrap";
 import Layout from "./Layout";
-
-const events = [{ title: "test1" }, { title: "test2" }, { title: "test3" }];
+import EventIndex from "./pages/events/EventIndex";
+import { Router, Redirect } from "@reach/router";
+import EventEdit from "./pages/events/EventEdit";
 
 const App = () => (
   <Layout>
-    <h2>Events!</h2>
-    <ListGroup>
-      {events.map(event => (
-        <ListGroup.Item action href="">
-          {event.title}
-        </ListGroup.Item>
-      ))}
-    </ListGroup>
-    <Button>Create a new Event</Button>
+    <Router>
+      <Redirect from="/" to="/events" noThrow />
+      <EventIndex path="/events" />
+      <EventEdit path="/events/:eventId" />
+    </Router>
   </Layout>
 );
 
