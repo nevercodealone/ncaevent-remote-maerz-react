@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Col, Row, ListGroup, Button } from "react-bootstrap";
+import Layout from "./Layout";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const events = [{ title: "test1" }, { title: "test2" }, { title: "test3" }];
+
+const App = () => (
+  <Layout>
+    <h2>Events!</h2>
+    <ListGroup>
+      {events.map(event => (
+        <ListGroup.Item action href="">
+          {event.title}
+        </ListGroup.Item>
+      ))}
+    </ListGroup>
+    <Button>Create a new Event</Button>
+  </Layout>
+);
 
 export default App;
