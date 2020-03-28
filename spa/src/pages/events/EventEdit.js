@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import events from "../../events.json";
 import { Form, Button } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import { navigate } from "@reach/router";
@@ -92,7 +91,7 @@ const EventForm = ({ event, onSubmit }) => {
     </Form>
   );
 };
-const EventEdit = ({ eventId, onSubmit }) => {
+const EventEdit = ({ events, eventId, onSubmit }) => {
   const foundEvents = events.filter(e => e.id == eventId);
   const event = foundEvents.length ? foundEvents[0] : null;
 

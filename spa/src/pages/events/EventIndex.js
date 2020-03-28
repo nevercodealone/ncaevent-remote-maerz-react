@@ -2,7 +2,7 @@ import React from "react";
 import { ListGroup, Button } from "react-bootstrap";
 import { Link } from "@reach/router";
 
-const EventIndex = ({ events }) => {
+const EventIndex = ({ events, onNew }) => {
   return (
     <div>
       <h2>Events!</h2>
@@ -18,7 +18,7 @@ const EventIndex = ({ events }) => {
           </ListGroup.Item>
         ))}
       </ListGroup>
-      <Button>Create a new Event</Button>
+      <Button onClick={onNew}>Create a new Event</Button>
     </div>
   );
 };
