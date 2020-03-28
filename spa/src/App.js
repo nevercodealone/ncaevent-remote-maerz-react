@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "./Layout";
 import EventIndex from "./pages/events/EventIndex";
 import { Router, Redirect } from "@reach/router";
 import EventEdit from "./pages/events/EventEdit";
-import initialEvents from "./events.json";
+import Axios from "./axios";
 
 const App = () => {
-  const [events, setEvents] = useState(initialEvents);
+  const [events, setEvents] = useState([]);
+
+  async function fetchEvents() {
+    const { data } = await Axios.get("/events");
+    setEvents(data);
+  }
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
   return (
     <Layout>
       <Router>
